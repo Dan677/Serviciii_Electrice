@@ -947,3 +947,60 @@ section {
         margin: 0 auto; /* Centram logo-urile pe ecranul telefonului */
     }
 }
+/* Folosim Flexbox pentru a permite coloanelor să se micșoreze */
+.footer-grid {
+    display: flex;
+    flex-wrap: nowrap; /* Încercăm să le ținem pe un rând */
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box; /* Esențial: include padding-ul în lățime */
+}
+
+/* Coloanele de text și logo-uri */
+.footer-links, .footer-legal {
+    flex: 1 1 auto; /* Le permite să se micșoreze dacă e nevoie */
+    min-width: 0;   /* Permite conținutului să se strângă sub mărimea lui naturală */
+}
+
+/* Coloana cu butonul */
+.footer-cta {
+    flex: 0 0 auto; /* Butonul nu se strânge, dar nici nu împinge restul */
+    text-align: right;
+}
+
+/* Ajustăm butonul să fie puțin mai compact pe ecrane medii */
+.btn-anre {
+    display: inline-flex;
+    align-items: center;
+    background: #004a99;
+    color: #ffffff !important;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* REZOLVARE SCROLL: Dacă ecranul e sub 1100px, le punem pe rânduri noi */
+@media (max-width: 1100px) {
+    .footer-grid {
+        flex-wrap: wrap; /* Permite trecerea pe rândul 2 înainte să apară scroll-ul */
+    }
+
+    .footer-links, .footer-legal {
+        flex: 1 1 40%; /* Ocupă cam jumătate de ecran */
+    }
+
+    .footer-cta {
+        flex: 1 1 100%; /* Butonul trece singur pe rândul de jos */
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Taie orice depășește lățimea ecranului pe orizontală */
+}
